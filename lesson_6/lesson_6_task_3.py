@@ -4,12 +4,16 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 driver = webdriver.Chrome()
+element = WebDriverWait(driver,40)
 driver.get("https://bonigarcia.dev/selenium-webdriver-java/loading-images.html")
-images = WebDriverWait(driver, 50).until(
-          EC.visibility_of_element_located((By.TAG_NAME, 'img'))
+element.until(
+          EC.visibility_of_element_located((By.CSS_SELECTOR, '#landscape'))
     )
-print(len(images))
-third_image_src = images[2].get_attribute('src')
-print(third_image_src)
+is_displayed = driver.find_element(By.CSS_SELECTOR, '#landscape').is_displayed()
+print(is_displayed)
+
+img_3 = driver.find_element(By.XPATH, '//*[@id="award"]')
+print(img_3.get_attribute("scr"))
+print(id(img_3))
 
 driver.quit()
