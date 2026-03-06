@@ -20,7 +20,8 @@ def driver():
 @allure.feature("Калькулятор")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_calc(driver):
-    calculator = Calculator(driver)
+    with allure.step("Запуск драйвера"):
+        calculator = Calculator(driver)
     with allure.step("Открытие страницы калькулятора"):
         calculator.open_calculator()
     with allure.step("Нажатие кнопок"):
